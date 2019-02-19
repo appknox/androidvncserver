@@ -1,0 +1,104 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+bin/
+include/
+google.der
+share/
+/backup.sqlite3
+/client_secrets.json
+/oauth2.dat
+/images
+/prod_confs
+/staging_confs
+/research_confs
+/sockets/node_modules
+/celerybeat-schedule
+/celerybeat.pid
+/app.py
+*.swp
+
+# files for local testing
+/mycroft/settings_dev/
+/scripts/celery_start.sh
+/scripts/server_start.sh
+celerybeat-schedule.db
+/mycroft/settings_dev/
+
+tmp/*
+.dir-locals.el
+.ipynb_checkpoints/mycroft-checkpoint.ipynb
+TAGS
+.env
+.dir-locals.el
+.ipynb_checkpoints/*
+TAGS
+/settings_dev.py
+*.po
+
+# Vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+Session.vim
+.netrwhist
+*~
+tags
+
+.vscode/
+
+.vagrant/
+.ropeproject/
+
+obj/
+libs/
