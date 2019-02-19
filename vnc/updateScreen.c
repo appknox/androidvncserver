@@ -36,13 +36,14 @@ void FUNCTION(void)
 	if (method==FRAMEBUFFER) {
 		scrinfo = FB_getscrinfo();
 		b = (OUT_T*) readBufferFB();
-	}
-	else if (method==ADB)
-		b = (OUT_T*) readBufferADB();
-	else if (method==GRALLOC)
-		b = (OUT_T*) readBufferGralloc();
-	else if (method==FLINGER)
-		b = (OUT_T*) readBufferFlinger();
+	} else if (method==ADB) {
+        b = (OUT_T*) readBufferADB();
+    } else if (method==GRALLOC) {
+        b = (OUT_T*) readBufferGralloc();
+    } else if (method==FLINGER) {
+        b = (OUT_T*) readBufferFlinger();
+    }
+
 
 	//a = (OUT_T*)cmpbuf;
 
@@ -64,16 +65,16 @@ void FUNCTION(void)
 
 				if (a[i + offset]!=b[pixelToVirtual]) {
 					a[i + offset]=b[pixelToVirtual];
-					
+
 					if (i>max_x)
 						max_x=i;
-						
+
 					if (i<min_x)
 						min_x=i;
 
 					if (j>max_y)
 						max_y=j;
-						
+
 					if (j<min_y)
 						min_y=j;
 
@@ -91,7 +92,7 @@ void FUNCTION(void)
 				if (method==FRAMEBUFFER)
 					pixelToVirtual = PIXEL_TO_VIRTUALPIXEL_FB(i,j);
 				else
-					pixelToVirtual = PIXEL_TO_VIRTUALPIXEL(i,j);			
+					pixelToVirtual = PIXEL_TO_VIRTUALPIXEL(i,j);
 
 				if (a[(vncscr->width - 1 - j + offset)] != b[pixelToVirtual])
 				{
@@ -99,7 +100,7 @@ void FUNCTION(void)
 
 					if (i>max_y)
 						max_y=i;
-						
+
 					if (i<min_y)
 						min_y=i;
 
@@ -127,10 +128,10 @@ void FUNCTION(void)
 
 				if (a[((vncscr->width - 1 - i) + offset )]!=b[pixelToVirtual]) {
 					a[((vncscr->width - 1 - i) + offset )]=b[pixelToVirtual];
-					
+
 					if (i>max_x)
 						max_x=i;
-						
+
 					if (i<min_x)
 						min_x=i;
 
@@ -138,7 +139,7 @@ void FUNCTION(void)
 
 					if (h < min_y)
 						min_y=vncscr->height-j;
-						
+
 					if (h > max_y)
 						max_y=vncscr->height-j;
 
@@ -162,13 +163,13 @@ void FUNCTION(void)
 
 					if (i>max_y)
 						max_y=i;
-						
+
 					if (i<min_y)
 						min_y=i;
 
 					if (j < min_x)
 						min_x=j;
-						
+
 					if (j > max_x)
 						max_x=j;
 
@@ -192,11 +193,11 @@ void FUNCTION(void)
 		rfbMarkRectAsModified(vncscr, 0, 0, screenformat.width, screenformat.height);
 	}
 
-    if (method == FLINGER) {
-        // Only flinger creates a new image array (for now)
-        // Other methods do not so don't overzealously free mem.
-        free(b);
-    }
+    // if (method == FLINGER) {
+    //     // Only flinger creates a new image array (for now)
+    //     // Other methods do not so don't overzealously free mem.
+    //     free(b);
+    // }
 	if (display_rotate_180)
 		rotation=r;
 }

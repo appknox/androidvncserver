@@ -111,8 +111,9 @@ void closeFlinger(void)
 
 unsigned char *readBufferFlinger(void)
 {
-    if (readfb_flinger)
+    if (readfb_flinger) {
         return readfb_flinger();
+    }
     return NULL;
 }
 
