@@ -17,6 +17,8 @@ License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+#include "common.h"
+
 #define OUT_T CONCAT3E(uint,OUT,_t)
 #define FUNCTION CONCAT2E(update_screen_,OUT)
 
@@ -179,6 +181,10 @@ void FUNCTION(void)
 		}
 	}
   */
+
+    if(b == NULL) {
+        return;
+    }
 
 	if (!idle) {
 		memcpy(vncbuf,b,screenformat.width*screenformat.height*screenformat.bitsPerPixel/CHAR_BIT);
