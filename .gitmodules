@@ -1,6 +1,6 @@
-[submodule "libvncserver/libjpeg-turbo"]
-	path = libvncserver/libjpeg-turbo
-	url = https://android.googlesource.com/platform/external/libjpeg-turbo
 [submodule "libvncserver/libpng"]
 	path = libvncserver/libpng
 	url = https://android.googlesource.com/platform/external/libpng
+[submodule "libvncserver/libjpeg-turbo"]
+	path = libvncserver/libjpeg-turbo
+	url = https://android.googlesource.com/platform/external/libjpeg-turbo

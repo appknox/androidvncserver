@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.4.1)
 project(testnative)
 add_executable(
     androidvncserver
-    droidvncserver.c 
+    droidvncserver.c
     gui.c
     inputMethods/input.c
     screenMethods/adb.c
@@ -25,5 +25,4 @@ include_directories(
     ${PROJECT_SOURCE_DIR}
 )
 
-message(${PROJECT_SOURCE_DIR}/include)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DNOAPP")
