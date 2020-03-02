@@ -148,16 +148,16 @@ void sendServerStopped()
 void initVncServer(int argc, char **argv)
 {
 
-	vncbuf = calloc(screenformat.width * screenformat.height, screenformat.bitsPerPixel/CHAR_BIT);
-	cmpbuf = calloc(screenformat.width * screenformat.height, screenformat.bitsPerPixel/CHAR_BIT);
+	vncbuf = calloc(screenformat.rowStride * screenformat.height, screenformat.bytesPerPixel);
+	cmpbuf = calloc(screenformat.rowStride * screenformat.height, screenformat.bytesPerPixel);
 
 	assert(vncbuf != NULL);
 	assert(cmpbuf != NULL);
 
 	if (rotation==0 || rotation==180)
-		vncscr = rfbGetScreen(&argc, argv, screenformat.width , screenformat.height, 0 /* not used */ , 3,	screenformat.bitsPerPixel/CHAR_BIT);
+		vncscr = rfbGetScreen(&argc, argv, screenformat.width , screenformat.height, 8 /* not used */ , 3,	screenformat.bytesPerPixel);
 	else
-		vncscr = rfbGetScreen(&argc, argv, screenformat.height, screenformat.width, 0 /* not used */ , 3,	screenformat.bitsPerPixel/CHAR_BIT);
+		vncscr = rfbGetScreen(&argc, argv, screenformat.height, screenformat.width, 8 /* not used */ , 3,	screenformat.bytesPerPixel);
 
 	assert(vncscr != NULL);
 
@@ -187,17 +187,17 @@ void initVncServer(int argc, char **argv)
 //	vncscr->httpEnableProxyConnect = TRUE;
 	vncscr->sslcertfile = "self.pem";
 
-	vncscr->serverFormat.redShift = screenformat.redShift;
-	vncscr->serverFormat.greenShift = screenformat.greenShift;
-	vncscr->serverFormat.blueShift = screenformat.blueShift;
+	// vncscr->serverFormat.redShift = screenformat.redShift;
+	// vncscr->serverFormat.greenShift = screenformat.greenShift;
+	// vncscr->serverFormat.blueShift = screenformat.blueShift;
 
-	vncscr->serverFormat.redMax = (( 1 << screenformat.redMax) -1);
-	vncscr->serverFormat.greenMax = (( 1 << screenformat.greenMax) -1);
-	vncscr->serverFormat.blueMax = (( 1 << screenformat.blueMax) -1);
+	// vncscr->serverFormat.redMax = (( 1 << screenformat.redMax) -1);
+	// vncscr->serverFormat.greenMax = (( 1 << screenformat.greenMax) -1);
+	// vncscr->serverFormat.blueMax = (( 1 << screenformat.blueMax) -1);
 
 	vncscr->serverFormat.trueColour = TRUE;
 	vncscr->serverFormat.bitsPerPixel = screenformat.bitsPerPixel;
-
+    vncscr->paddedWidthInBytes = screenformat.rowStride * screenformat.bytesPerPixel;
 	vncscr->alwaysShared = TRUE;
 	vncscr->handleEventsEagerly = TRUE;
 	vncscr->deferUpdateTime = 5;
@@ -236,7 +236,7 @@ void rotate(int value)
 			int w = vncscr->width;
 
 			vncscr->width = h;
-			vncscr->paddedWidthInBytes = h * screenformat.bitsPerPixel / CHAR_BIT;
+			vncscr->paddedWidthInBytes = h * screenformat.bytesPerPixel;
 			vncscr->height = w;
 
 			rfbClientIteratorPtr iterator;

@@ -11,6 +11,8 @@ typedef struct _screenFormat
   uint16_t height;
 
   uint8_t bitsPerPixel;
+  uint8_t bytesPerPixel;
+  uint16_t rowStride;
 
   uint16_t redMax;
   uint16_t greenMax;
